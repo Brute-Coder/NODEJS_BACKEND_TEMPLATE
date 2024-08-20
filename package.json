@@ -1,35 +1,41 @@
 {
-  "name": "node",
-  "version": "1.0.0",
-  "description": "node for production ",
-  "main": "index.js",
-  "scripts": {
-    "dist": "npx tsc",
-    "dev": "nodemon src/server.ts",
-    "start": "node dist/server.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "prepare": "husky"
-  },
-  "author": "soumya sekhar mahanti",
-  "license": "ISC",
-  "lint-staged": {
-    "*.ts": [
-      "npm run lint:fix"
-    ]
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@eslint/js": "^9.9.0",
-    "@types/eslint__js": "^8.42.3",
-    "@types/node": "^22.4.1",
-    "eslint": "^9.9.0",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.9",
-    "nodemon": "^3.1.4",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.2.0"
-  }
+    "name": "node",
+    "version": "1.0.0",
+    "description": "node for production ",
+    "main": "index.js",
+    "scripts": {
+        "dist": "npx tsc",
+        "dev": "nodemon src/server.ts",
+        "start": "node dist/server.js",
+        "lint": "eslint ",
+        "lint:fix": "eslint  --fix",
+        "format:check": "prettier . --check",
+        "format:fix": "prettier . --fix",
+        "prepare": "husky"
+    },
+    "author": "soumya sekhar mahanti",
+    "license": "ISC",
+    "lint-staged": {
+        "*.ts": [
+            "npm run lint:fix",
+            "npm run format:fix"
+        ]
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^19.4.0",
+        "@commitlint/config-conventional": "^19.2.2",
+        "@eslint/js": "^9.9.0",
+        "@types/eslint__js": "^8.42.3",
+        "@types/node": "^22.4.1",
+        "eslint": "^9.9.0",
+        "eslint-config-prettier": "^9.1.0",
+        "husky": "^9.1.4",
+        "lint-staged": "^15.2.9",
+        "nodemon": "^3.1.4",
+        "prettier": "3.3.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4",
+        "typescript-eslint": "^8.2.0"
+    }
 }
+
