@@ -2,6 +2,7 @@ import config from "../config/config"
 import ResponseMessage from "../constant/responseMessage"
 import { THttpError } from "../types/types"
 import { Request } from "express"
+import logger from "./logger"
 
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export default (err: Error | unknown, req: Request, errorStatusCode: number = 500): THttpError => {
@@ -18,8 +19,7 @@ export default (err: Error | unknown, req: Request, errorStatusCode: number = 50
         trace: err instanceof Error ? { error: err.stack } : null
     }
     // Log the Error
-    // eslint-disable-next-line no-console
-    console.error(`CONTROLLER ERROR: `, {
+    logger.error(`CONTROLLER ERROR: `, {
         meta: errorObj
     })
 
