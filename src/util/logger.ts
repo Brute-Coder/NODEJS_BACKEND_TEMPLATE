@@ -5,21 +5,36 @@ import config from "../config/config"
 import { EApplicationEnvirontment } from "../constant/application"
 import path from "path"
 import * as sourcemapsupport from "source-map-support"
+import { red, yellow, bold, magentaBright, blueBright, whiteBright } from "colorette"
 
 // Enable sourcemaps
 sourcemapsupport.install()
 
+// colorize the console
+const colorizer = (level: string): string => {
+    switch (level) {
+        case "ERROR":
+            return bold(red(level))
+        case "WARN":
+            return bold(yellow(level))
+        case "INFO":
+            return bold(blueBright(level))
+        default:
+            return level
+    }
+}
+
 const consoleLogFormat = format.printf((info) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { level, message, timestamp, meta = {} } = info
-    const customLevel = level.toUpperCase()
+    const customLevel = colorizer(level.toUpperCase())
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const customMessage = message
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const customTimestamp = timestamp
-    const customMeta = util.inspect(meta, { showHidden: false, depth: 5 })
+    const customMeta = util.inspect(meta, { showHidden: false, depth: 5, colors: true })
 
-    const customLog = `${customLevel} [${customTimestamp}] ${customMessage}\n ${"META"} ${customMeta}\n`
+    const customLog = `${customLevel} [${magentaBright(customTimestamp as string)}] ${customMessage}\n ${yellow("META")} ${whiteBright(customMeta)}\n`
     return customLog
 })
 
