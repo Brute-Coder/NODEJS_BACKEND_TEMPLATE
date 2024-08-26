@@ -5,10 +5,21 @@ import globalErrorHandler from "./middleware/globalErrorHandler"
 import httpError from "./util/httpError"
 import ResponseMessage from "./constant/responseMessage"
 import healthRouter from "./router/healthRouter"
+import helmet from "helmet"
+import cors from "cors"
 
 const app: Application = express()
 
 //Middleware
+app.use(helmet())
+app.use(
+   
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  })
+)
 app.use(express.json())
 app.use(express.static(path.join(__dirname, "../", "public")))
 
